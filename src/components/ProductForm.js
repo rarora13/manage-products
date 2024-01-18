@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../actions/productActions';
+import './ProductForm.css'; // Import the CSS file for styling
 
 const ProductForm = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const ProductForm = () => {
   };
 
   return (
-    <div>
+    <div className="product-form">
       <input
         type="text"
         placeholder="Product Name"
