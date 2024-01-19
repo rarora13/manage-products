@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.css';
-import ProductForm from './components/ProductForm';
-import ProductList from './components/ProductList';
+import HomePage from './Components/Home/HomePage';
 
 function App() {
-  return (
-    <div className="App">
-      <ProductForm />
-      <ProductList />
-    </div>
-  );
+    return (
+         <HomePage />
+    );
 }
 
 export default App;
