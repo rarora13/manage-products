@@ -19,7 +19,7 @@ const ProductOptions = ({ data }) => {
     title="Actions"
     menuAlign="right"
     variant="secondary"
-    className="float-end">
+    className="float-end actions-menu-head">
       <Dropdown.Item  className="options-dropdown-item" onClick={() => handleOptionClick('edit')}>Edit</Dropdown.Item>
       <Dropdown.Item className="options-dropdown-item" onClick={() => handleOptionClick('delete')}>Delete</Dropdown.Item>
     </DropdownButton>

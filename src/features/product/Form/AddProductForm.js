@@ -15,12 +15,15 @@ const AddProductForm = () => {
     const isEditMode = useSelector((state) => state.productReducer.formState.editMode);
 
     const dispatch = useDispatch();
+    let editingUuid = null;
 
     const [formData, setFormData] = useState(initialProductData);
+    // const [productId, setProductId] = useState(initialProductData.productID);
 
     useEffect(() => {
         console.log("state has changed:"+isEditMode+":::"+initialProductData);
         if (initialProductData) {
+            editingUuid = initialProductData.productID;
             setFormData(initialProductData);
         }
     }, [isEditMode, initialProductData]);
@@ -39,6 +42,7 @@ const AddProductForm = () => {
         };
 
         if (isEditMode) {
+            console.log("payload:",payload)
             dispatch(updateProduct(payload));
         } else {
             dispatch(addProduct(payload));

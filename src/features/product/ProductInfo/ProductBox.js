@@ -8,12 +8,7 @@ import PriceIcon from '../../../assets/images/price.svg';
 import StarIcon from '../../../assets/images/star.svg';
 import DateIcon from '../../../assets/images/date.svg';
 
-const ProductBox = ({ data }) => {
-      const [product,setProduct] =useState(data);
-  
-  useEffect(() => {
-      console.log('Products updated:');
-  }, [data, product]);
+const ProductBox = ({ product }) => {
 
   return (
     <Card className='product-card'>

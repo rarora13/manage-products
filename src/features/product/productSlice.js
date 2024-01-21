@@ -26,9 +26,16 @@ export const productSlice = createSlice({
             state.products= state.products.filter(product => product.productID !== action.payload.productID);
         },
         updateProduct:(state, action) => {
+            console.log("update:",action.payload);
             state.products = state.products.map(product =>
                 product.productID === action.payload.productID ? action.payload : product
             );
+            // const updatedProducts = state.products.map(product => 
+            //     product.id === productId ? { ...product, ...updatedProductData } : product
+            //   );
+
+
+            console.log("state updated:",state.products)
         },
         editProduct:(state, action) => {
             state.formState = {
@@ -40,6 +47,7 @@ export const productSlice = createSlice({
                     productPrice: action.payload.productPrice.toString(),
                     isSpecial: action.payload.isSpecial,
                     expiryDate: action.payload.expiryDate,
+                    productID: action.payload.productID,
                 }
             }
         },

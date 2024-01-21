@@ -5,14 +5,9 @@ import { Col, Row } from 'react-bootstrap';
 import noProductImg from '../../assets/images/no-product.png';
 
 const ProductList = () => {
-    const productList = useSelector((state) => state.productReducer.products);
-    const [products, setProducts] = useState(productList);
+    const products = useSelector((state) => state.productReducer.products);
 
-    useEffect(() => {
-        console.log('Products updated XXX:');
-        setProducts(productList);
-    }, [products, productList]);
-
+    console.log("products:",products);
     const style = {
         height: 540, overflow: 'hidden', overflowY : 'scroll', paddingRight : '10px'
     } 
@@ -28,7 +23,7 @@ const ProductList = () => {
                                     {products.map((product) => {
                                         return (
                                             <Col sm={6} key={product.productID}>
-                                                <ProductBox data={product} />
+                                                <ProductBox product={product} />
                                             </Col>
                                         )
                                     })}  

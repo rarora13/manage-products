@@ -3,3 +3,15 @@
     width: 100%;
     text-align: left;
   }
+
+  .actions-menu-head button {
+    background-color: transparent;
+    color: grey;
+    border-color: grey;
+  }
+
+  .actions-menu-head button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: white;
+  }
