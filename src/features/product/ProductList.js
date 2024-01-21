@@ -1,12 +1,13 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import ProductBox from './ProductInfo/ProductBox';
 import { Col, Row } from 'react-bootstrap';
 import noProductImg from '../../assets/images/no-product.png';
 
 const ProductList = () => {
-    const products = useSelector((state) => state.products);
+    const products = useSelector((state) => state.productReducer.products);
 
+    console.log("products:",products);
     const style = {
         height: 540, overflow: 'hidden', overflowY : 'scroll', paddingRight : '10px'
     } 
@@ -22,7 +23,7 @@ const ProductList = () => {
                                     {products.map((product) => {
                                         return (
                                             <Col sm={6} key={product.productID}>
-                                                <ProductBox data={product} />
+                                                <ProductBox product={product} />
                                             </Col>
                                         )
                                     })}  

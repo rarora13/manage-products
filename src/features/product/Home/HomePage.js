@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AddProductForm from '../Form/AddProductForm'; 
 import './HomePage.scss'; 
-import ProductList from '../Products/ProductList';
+import ProductList from '../ProductList';
 
 const HomePage = () => {
     return (
