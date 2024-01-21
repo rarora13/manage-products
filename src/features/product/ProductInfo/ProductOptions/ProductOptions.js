@@ -1,6 +1,7 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { deleteProduct, editProduct } from '../../../../actions/productActions';
+// import { deleteProduct, editProduct } from '../../../../actions/productActions';
+import { deleteProduct, editProduct } from '../../productSlice';
 import { useDispatch } from 'react-redux';
 import './ProductOptions.scss'
 

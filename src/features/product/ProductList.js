@@ -5,7 +5,7 @@ import { Col, Row } from 'react-bootstrap';
 import noProductImg from '../../assets/images/no-product.png';
 
 const ProductList = () => {
-    const productList = useSelector((state) => state.products);
+    const productList = useSelector((state) => state.productReducer.products);
     const [products, setProducts] = useState(productList);
 
     useEffect(() => {

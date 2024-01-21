@@ -4,12 +4,15 @@ import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import './AddProductForm.scss';
 import { useDispatch } from 'react-redux';
-import { addProduct, updateProduct,resetProductForm } from '../../actions/productActions';
+import { addProduct, updateProduct,resetProductForm } from './../productSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 const AddProductForm = () => {
-    const initialProductData = useSelector((state) => state.formState.formData);
-    const isEditMode = useSelector((state) => state.formState.editMode);
+    const initialProductData = useSelector((state)=> state.productReducer.formState.formData);
+    
+
+      //useSelector((state) => state.formState.formData);
+    const isEditMode = useSelector((state) => state.productReducer.formState.editMode);
 
     const dispatch = useDispatch();
 

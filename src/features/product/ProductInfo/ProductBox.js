@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import './ProductBox.scss';
 import { Col, Row } from 'react-bootstrap';
 import ProductOptions from './ProductOptions/ProductOptions';
