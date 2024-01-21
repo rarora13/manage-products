@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -11,6 +11,12 @@ import StarIcon from '../../../assets/images/star.svg';
 import DateIcon from '../../../assets/images/date.svg';
 
 const ProductBox = ({ data }) => {
+      const [product,setProduct] =useState(data);
+  
+  useEffect(() => {
+      console.log('Products updated:');
+  }, [data, product]);
+
   return (
     <Card className='product-card'>
       <Card.Body>
@@ -18,9 +24,9 @@ const ProductBox = ({ data }) => {
           <Col xs={12}>
             <Card.Title className="d-flex align-items-center">
               <div className="flex-grow-1 overflow-hidden">
-                {data.productName}
+                {product.productName}
               </div>
-              <ProductOptions data={data} />
+              <ProductOptions data={product} />
             </Card.Title>
           </Col>
         </Row>
@@ -28,23 +34,23 @@ const ProductBox = ({ data }) => {
           <Col xs sm={12} md={6}>
             <Card.Text>
               <img src={PriceIcon} />
-              {data.productPrice ? data.productPrice.toFixed(2) : null}
+              {product.productPrice ? product.productPrice.toFixed(2) : null}
             </Card.Text>
           </Col>
           <Col xs sm={12} md={6}>
             <Card.Text>
               <img src={CategoryIcon} />
-              {data.productType}
+              {product.productType}
             </Card.Text>
           </Col>
         </Row>
         <Row className='py-1'>
           <Col xs sm={12} md={9}>
             <Card.Text>
-              <img src={DateIcon} /> {data.canExpire == true ? data.expiryDate : 'No Expiry'}
+              <img src={DateIcon} /> {product.canExpire == true ? product.expiryDate : 'No Expiry'}
             </Card.Text>
           </Col>
-          {data.isSpecial == true ? (
+          {product.isSpecial == true ? (
             <Col xs sm={12} md={3}>
               <Card.Text className='text-end'>
                 <img src={StarIcon} />

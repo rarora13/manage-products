@@ -1,54 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
+import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import './AddProductForm.scss';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../../actions/productActions';
+import { addProduct, updateProduct,resetProductForm } from '../../actions/productActions';
 import { v4 as uuidv4 } from 'uuid';
 
 const AddProductForm = () => {
-    // State variable for form fields
-    const [formData, setFormData] = useState({
-        productName: '',
-        canExpire: false,
-        productType: '',
-        productPrice: '',
-        isSpecial: false,
-        expiryDate: '',
-    });
+    const initialProductData = useSelector((state) => state.formState.formData);
+    const isEditMode = useSelector((state) => state.formState.editMode);
 
     const dispatch = useDispatch();
 
-    // Handler for form submission
+    const [formData, setFormData] = useState(initialProductData);
+
+    useEffect(() => {
+        console.log("state has changed:"+isEditMode+":::"+initialProductData);
+        if (initialProductData) {
+            setFormData(initialProductData);
+        }
+    }, [isEditMode, initialProductData]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const payload = {
-            productName: formData.productName,
-            canExpire: formData.canExpire,
-            productType: formData.productType,
-            productPrice: parseInt(formData.productPrice),
-            isSpecial: formData.isSpecial,
-            expiryDate: formData.expiryDate,
-            productID: uuidv4(),
+        productName: formData.productName,
+        canExpire: formData.canExpire,
+        productType: formData.productType,
+        productPrice: parseInt(formData.productPrice),
+        isSpecial: formData.isSpecial,
+        expiryDate: formData.expiryDate,
+        productID: isEditMode ? formData.productID : uuidv4(),
         };
 
-        dispatch(addProduct(payload));
+        if (isEditMode) {
+            dispatch(updateProduct(payload));
+        } else {
+            dispatch(addProduct(payload));
+        }
 
         // Clear the form after dispatch
-        setFormData({
-            productName: '',
-            canExpire: false,
-            productType: 'vegetables',
-            productPrice: '',
-            isSpecial: false,
-            expiryDate: '',
-        });
+        // setFormData(resetProductForm);
+        dispatch(resetProductForm());
     };
- 
 
-    return (
-        <div className='add-product'>
+  return (
+    <div className='add-product'>
             <h5 className='fw-bold mb-4'>Add Product</h5>
 
             <div className="product-form-section">
@@ -122,22 +121,22 @@ const AddProductForm = () => {
   
                     <div className="d-grid">
                         <Button
-                            variant="primary"
-                            type="submit"
-                            disabled={
-                                !formData.productName.trim() ||
-                                !formData.productType.trim() ||
-                                !formData.productPrice.trim() ||
-                                (formData.canExpire && !formData.expiryDate.trim())
-                            }
+                        variant="primary"
+                        type="submit"
+                        disabled={
+                            !formData.productName.trim() ||
+                            !formData.productType.trim() ||
+                            !formData.productPrice.trim() ||
+                            (formData.canExpire && !formData.expiryDate.trim())
+                        }
                         >
-                            Add Product
+                        {isEditMode ? 'Update Product' : 'Add Product'}
                         </Button>
-                    </div>
+    </div>
                 </Form>
             </div>
         </div>
-    );
+  );
 };
 
 export default AddProductForm;

@@ -1,11 +1,17 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import ProductBox from './ProductInfo/ProductBox';
 import { Col, Row } from 'react-bootstrap';
 import noProductImg from '../../assets/images/no-product.png';
 
 const ProductList = () => {
-    const products = useSelector((state) => state.products);
+    const productList = useSelector((state) => state.products);
+    const [products, setProducts] = useState(productList);
+
+    useEffect(() => {
+        console.log('Products updated XXX:');
+        setProducts(productList);
+    }, [products, productList]);
 
     const style = {
         height: 540, overflow: 'hidden', overflowY : 'scroll', paddingRight : '10px'
